@@ -8,6 +8,7 @@
 
             RonVSKanyeAPI.Kanye();
             RonVSKanyeAPI.Ron();
+            OpenWeatherMapAPI.Weather();
         }
     }
 }

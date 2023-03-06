@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,20 @@ using System.Threading.Tasks;
 
 namespace APIsAndJSON
 {
-    internal class OpenWeatherMapAPI
+    public class OpenWeatherMapAPI
     {
+        public static void Weather()
+        {
+          var Client = new HttpClient();
+            var key = "37593bfc559c6f42cc7a0fe61d20a288";
+            var city = "Dallas";
+
+            var weatherURL = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={key}";
+            var response = Client.GetStringAsync(weatherURL).Result;
+
+            var formattedResponse = JObject.Parse(response).GetValue("main");
+            Console.WriteLine(formattedResponse);
+        }
     }
 }
 
